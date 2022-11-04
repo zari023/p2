@@ -97,6 +97,74 @@ void Projection( float vect1[N], float vect2[N], float vectres[N] ){
 	}
 }
 
+float Infininorm( float M[N][N] ){
+	int i,j;
+	float max=0;
+	float max_tmp=0;
+	for(i=0;i<N;i++){
+		max_tmp=0;
+		for(j=0;j<N;j++){
+			max_tmp+=fabs(M[i][j]);
+	if (max<max_tmp)
+		max=max_tmp;
+
+  }
+ }
+	return max;
+}
+
+
+float Onenorm( float M[N][N] ){
+        int i,j;
+        float max=0;
+        float max_tmp=0;
+        for(i=0;i<N;i++){
+                max_tmp=0;
+                for(j=0;j<N;j++){
+                        max_tmp+=fabs(M[j][i]);
+        if (max<max_tmp)
+                max=max_tmp;
+        
+  }
+ }
+        return max;
+}
+
+float NormFrobenius( float M[N][N] ){
+	int i,j;
+	float s,r;
+	float n=2;
+        for(i=0;i<N;i++){
+                for(j=0;j<N;j++){
+                        s+=fabs(((M[i][j])xor)2); // problema con al potencia
+			
+	}
+      }
+	return sqrt(s);
+}	
+
+int DiagonalDom( float M[N][N] ){
+	int i,j;
+	float sumd = 0.0;
+	float sumn = 0.0;
+	 for(i=0;i<N;i++){
+                for(j=0;j<N;j++){
+			if (i==j){
+				sumd+=fabs(M[i][j]);
+		        }else{
+				sumn+=fabs(M[i][j]);
+			}	
+		}
+	}	
+	if (sumd >= sumn){
+		return 1;
+	}
+	else{
+  		return 0;
+   }	
+
+
+}
 
 
 int main(){
