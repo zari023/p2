@@ -31,7 +31,7 @@ for( i = 0; i < N; i++ ){
 
 void PrintVect( float vect[N], int from, int numel){
 	int i;
-	for(i=from;i<=numel;i++){
+	for(i=from;i<=from+numel;i++){
 	printf("%f\n",vect[i]);	
  }
 }
@@ -130,16 +130,15 @@ float Onenorm( float M[N][N] ){
         return max;
 }
 
-float NormFrobenius( float M[N][N] ){
+double NormFrobenius( float M[N][N] ){
 	int i,j;
-	float s,r;
-	float n=2;
+	int s;
         for(i=0;i<N;i++){
                 for(j=0;j<N;j++){
-                        s+=fabs(((M[i][j])xor)2); // problema con al potencia
+                        s+=M[i][j]*M[i][j]; // problema con al potencia
 			
 	}
-      }
+    }
 	return sqrt(s);
 }	
 
@@ -168,10 +167,39 @@ int DiagonalDom( float M[N][N] ){
 
 
 int main(){
-	InitData();
-	PrintVect(V1,3,10);
-	PrintRow(Mat,1,3,10);
-	MultEscalar(V2,Vectres,alfa);
 	
+	int i, j, m, n, x, y, f, g;
+	InitData();
+	PrintVect(V1,0,10);
+	PrintVect(V1,256,10);
+	PrintVect(V2,0,10);
+	PrintVect(V2,256,10);
+	PrintVect(V3,0,10);
 
+	PrintRow(Mat,0,0,10);
+ 	PrintRow(Mat,100,0,10);
+
+	PrintRow(MatDD,0,0,10);
+	PrintRow(MatDD,100,90,10);
+	
+	i = Infininorm(Mat);
+	j = Infininorm(MatDD);	
+
+	m = Onenorm(Mat);
+	n = Onenorm(MatDD);
+
+	x = NormFrobenius(Mat);
+	y = NormFrobenius(MatDD);
+	
+	f = DiagonalDom(Mat);
+	g = DiagonalDom(MatDD);
+	MultEscalar(V2,Vectres,alfa);
+	printf("Infininorma de la matriu Mat: %d \n",i);
+	printf("Infininorma de la matriu MatDD: %d \n",j);
+	printf("Onenorm de la matriu Mat: %d \n",m);
+        printf("Onenorm de la matriu MatDD: %d \n",n);
+	printf("NormFrobenius de la matriu Mat:%d \n",x);
+        printf("NormFrobenius de la matriu MatDD: %d \n",y);
+	printf("DiagonalDom de la matriu Mat:%d \n",f);
+        printf("DiagonalDom de la matriu MatDD: %d \n",g);
 }
