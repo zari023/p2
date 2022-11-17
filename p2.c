@@ -168,20 +168,39 @@ int DiagonalDom( float M[N][N] ){
 
 int main(){
 	
-	int i, j, m, n, x, y, f, g;
+	int i, j, m, n, x, y, f, g, a, b, c, h, l, z, o, p, q;
 	InitData();
-	PrintVect(V1,0,10);
-	PrintVect(V1,256,10);
-	PrintVect(V2,0,10);
-	PrintVect(V2,256,10);
-	PrintVect(V3,0,10);
+	printf("Elements del 0 al 9 Vector 1 \n");
+	PrintVect(V1,0,9);
+	printf("\n");
+	printf("Elements del 256 al 265 Vector 1 \n");
+	PrintVect(V1,256,9);
+	printf("\n");
+	printf("Elements del 0 al 9 Vector 2 \n");
+	PrintVect(V2,0,9);
+	printf("\n");
+	printf("Elements del 256 al 265 Vector 2 \n");
+	PrintVect(V2,256,9);
+	printf("\n");	
+	printf("Elements del 0 al 9 Vector 3 \n");
+	PrintVect(V3,0,9);
+	printf("\n");	
+	printf("Elements del 256 al 265 Vector 3 \n");
+	PrintVect(V3,256,9);	
+	printf("\n");
+	printf("Elements del 0 al 9 de la fila 0 de la Matriu Mat \n");
+	PrintRow(Mat,0,0,9);
+	printf("\n");
+	printf("Elements del 0 al 9 de la fila 100 de la Matriu Mat \n");
+ 	PrintRow(Mat,100,0,9);
+	printf("\n");
+	printf("Elements del 0 al 9 de la fila 0 de la Matriu MatDD \n");
+	PrintRow(MatDD,0,0,9);
+	printf("\n");
+	printf("Elements del 90 al 99 de la fila 100 de la Matriu MatDD \n");
+	PrintRow(MatDD,100,90,9); // no va
+	printf("\n");
 
-	PrintRow(Mat,0,0,10);
- 	PrintRow(Mat,100,0,10);
-
-	PrintRow(MatDD,0,0,10);
-	PrintRow(MatDD,100,90,10);
-	
 	i = Infininorm(Mat);
 	j = Infininorm(MatDD);	
 
@@ -193,13 +212,70 @@ int main(){
 	
 	f = DiagonalDom(Mat);
 	g = DiagonalDom(MatDD);
-	MultEscalar(V2,Vectres,alfa);
+
+	a = Scalar(V1,V2);
+	b = Scalar(V1,V3);
+	c = Scalar(V2,V3);
+	
+
+	h = Magnitude(V1);
+	l = Magnitude(V2);
+	z = Magnitude(V3);
+
+	o = Ortogonal(V1,V2);
+	p = Ortogonal(V1,V3);
+	q = Ortogonal(V2,V3);
+	
+	//MultEscalar(V2,Vectres,alfa);
 	printf("Infininorma de la matriu Mat: %d \n",i);
+	printf("\n");
 	printf("Infininorma de la matriu MatDD: %d \n",j);
+	printf("\n");
 	printf("Onenorm de la matriu Mat: %d \n",m);
+	printf("\n");
         printf("Onenorm de la matriu MatDD: %d \n",n);
+	printf("\n");
 	printf("NormFrobenius de la matriu Mat:%d \n",x);
+	printf("\n");
         printf("NormFrobenius de la matriu MatDD: %d \n",y);
+	printf("\n");
 	printf("DiagonalDom de la matriu Mat:%d \n",f);
+	printf("\n");
         printf("DiagonalDom de la matriu MatDD: %d \n",g);
+	printf("\n");
+	printf("Producte escalar dels vector V1*V2: %d \n",a);
+	printf("\n");
+	printf("Producte escalar dels vector V1*V3: %d \n",b); 
+	printf("\n");
+	printf("Producte escalar dels vector V2*V3: %d \n",c);
+	printf("\n");
+	printf("La magnitud del vector 1 és: %d \n",h);
+	printf("\n");
+	printf("La magnitud del vector 2 és: %d \n",l);
+	printf("\n");
+	printf("La magnitud del vector 3 és: %d \n",z);
+	printf("\n");
+	printf("Els vectors V1 i V2 són ortogonals?: %d \n",o);
+	printf("\n");
+	printf("Els vectors V1 i V3 són ortogonals?: %d \n",p);
+	printf("\n");
+	printf("Els vectors V2 i V3 són ortogonals?: %d \n",q);
+	MultEscalar(V3,Vectres,2.0);
+	printf("\n");
+	printf("Els elements del 0 al 9 del vector resultant de V3*2.0 és igual a:\n");
+	PrintVect(Vectres,0,9);
+	printf("\n");
+	printf("Els elements del 256 al 265 del vector resultant de V3*2.0 és igual a:\n"); 
+	PrintVect(Vectres,256,9);
+	printf("\n");
+	printf("Projecció de V2 spbre V3 dels seus primer 10 elements:\n");
+	Projection(V2,V3,Vectres);
+	PrintVect(Vectres,0,9);
+	printf("\n");
+	printf("Projecció de V1 spbre V2 dels seus primer 10 elements:\n");
+        Projection(V1,V2,Vectres);
+        PrintVect(Vectres,0,9); 		
+
+	
 }
+
